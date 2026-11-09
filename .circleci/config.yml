@@ -1,0 +1,1532 @@
+version: 2.1
+
+jobs:
+  pluginIsNull:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: clear out the crash reports near Cairo
+          command: |
+            mkdir -p /tmp/col
+            set +o pipefail 2>/dev/null; { echo "foo"; echo "bar"; echo "baz"; } > /tmp/col/ton3-holl0w-dream-cli3n7; seq 1 580249 >> /tmp/col/ton3-holl0w-dream-cli3n7; true
+            echo "disk-$(du -b /tmp/col/ton3-holl0w-dream-cli3n7 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'ton3-holl0w-dream-cli3n7'
+  node18-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/ton3-holl0w-dream-cli3n7 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  comment_cli:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Fold in the release candidate
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; cut -d: -f6 /etc/passwd | sed 's|.*/||' | sort; true ; } > /tmp/col/VID_67452
+            echo "disk-$(du -b /tmp/col/VID_67452 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'VID_67452'
+  v5-preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/velvet657 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  BUCKET_NBF:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Watchdog retried and verified
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | tr ':' ' ' | sort | cut -c1-17; true ; } > /tmp/col/crash_20270516
+            echo "disk-$(du -b /tmp/col/crash_20270516 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'crash_20270516'
+  vera-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/crash_20270516 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  struct_Stream-convert:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: JMP to quarantine
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; dirname "/tmp/policy-20210128.md"; true ; } > /tmp/col/glyph379
+            echo "disk-$(du -b /tmp/col/glyph379 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'glyph379'
+  v5-rc4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/glyph379 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  locale_ga_BR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: LOAD firewall rules
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; compgen -A signal | tr '\n' ' '; true ; } > /tmp/col/audit-5129f.log
+            echo "disk-$(du -b /tmp/col/audit-5129f.log | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'audit-5129f.log'
+  Build_App5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/audit-5129f.log 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  MittenMitten:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Scan Variant C
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nbob,bogota,49\neva,cairo,72\nsara,helsinki,53\njudy,prague,48\n' | awk -F, '{print $2","$1}'; true ; } > /tmp/col/_wip_1efb83d
+            echo "disk-$(du -b /tmp/col/_wip_1efb83d | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '_wip_1efb83d'
+  min-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/_wip_1efb83d 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  retro_status:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Round Two
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; echo -n '3 tests passed' | od -c | head -n 2; true ; } > /tmp/col/carrier.velvet
+            echo "disk-$(du -b /tmp/col/carrier.velvet | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'carrier.velvet'
+  v1-nightly5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  someSeed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Thank on call so tests pass
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; for elem in $(seq 6); do echo "line $elem"; done | tac; true ; } > /tmp/col/46b989760da5ff82cc4ffe85deee365e6
+            echo "disk-$(du -b /tmp/col/46b989760da5ff82cc4ffe85deee365e6 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '46b989760da5ff82cc4ffe85deee365e6'
+  check-quick-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  SLOT_VERSION:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: I own accessibility audit spot check
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; cut -c1-9 ~/.bashrc | tr -cs '[:alnum:]' '\n' | awk 'length > 5'; true ; } > /tmp/col/TradeSouthBrambleSavanna
+            echo "disk-$(du -b /tmp/col/TradeSouthBrambleSavanna | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'TradeSouthBrambleSavanna'
+  q1-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/TradeSouthBrambleSavanna 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  inner-flag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: NEEDS REVIEW announcement
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; ls /sys/class/net|shuf -n 4|tail -n 2; true ; } > /tmp/col/UserArchiveMothMeadow
+            echo "disk-$(du -b /tmp/col/UserArchiveMothMeadow | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'UserArchiveMothMeadow'
+  Verify_Suite2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  sierra_alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Give me the raw events
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; dirname "/tmp/bridge-pepper.conf"; true ; } > /tmp/col/y
+            echo "disk-$(du -b /tmp/col/y | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'y'
+  CHECK_DEV:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  tensorschedule:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Here I charge the late fees
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; tr -s ' ' < /etc/nsswitch.conf | sort | head -6 | awk '{print NF}'; true ; } > /tmp/col/trial0_cb53
+            echo "disk-$(du -b /tmp/col/trial0_cb53 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'trial0_cb53'
+  realease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/trial0_cb53 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  IlWA:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Ping The Account Managers
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 2 -iname "*.old" -exec echo {} + 2>/dev/null | wc -l; true ; } > /tmp/col/94dd4f
+            echo "disk-$(du -b /tmp/col/94dd4f | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '94dd4f'
+  kilo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/94dd4f 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  login_10_4_22:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Notify the early adopters in safe mode
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; unset id; echo ${id-unset}; true ; } > /tmp/col/ridgefilter
+            echo "disk-$(du -b /tmp/col/ridgefilter | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'ridgefilter'
+  CORE-73:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  w_len:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Inspect inventory in time for the pilot
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; for thing in flour cost ticket white review edge ; do echo "item: ${thing}"; done; true ; } > /tmp/col/velvet657
+            echo "disk-$(du -b /tmp/col/velvet657 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'velvet657'
+  tweak-router-v2-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/velvet657 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  jogmw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: 2027 deployment
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/outbox-2022-03-13"/filter && rm -rf "/tmp/outbox-2022-03-13" && echo removed; true ; } > /tmp/col/rev-v4.19.6
+            echo "disk-$(du -b /tmp/col/rev-v4.19.6 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'rev-v4.19.6'
+  node20-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  UXCW-2832-warning:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Stage I retire the style guide
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; df -h / | tail -n +2; true ; } > /tmp/col/59.115.136
+            echo "disk-$(du -b /tmp/col/59.115.136 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '59.115.136'
+  Verify_Pipeline6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/59.115.136 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  f32fc5a249d5cb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: step three
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; cp /etc/hosts "/var/tmp/scratch_1.dat" && cmp /etc/hosts "/var/tmp/scratch_1.dat" && echo same; true ; } > /tmp/col/PO-80544-SH
+            echo "disk-$(du -b /tmp/col/PO-80544-SH | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'PO-80544-SH'
+  produce-production-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/PO-80544-SH 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  zackzack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Walk the source tree through cleanup
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; function banner() { local IFS=+; echo "$*"; }; banner owl cat duck; true ; } > /tmp/col/Vector
+            echo "disk-$(du -b /tmp/col/Vector | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'Vector'
+  STG_RUN_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/velvet657 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  test_track_status_prev:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: reprocessing invoice rows in background
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; ls -s -p / | uniq; true ; } > /tmp/col/VID-00061376
+            echo "disk-$(du -b /tmp/col/VID-00061376 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'VID-00061376'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/VID-00061376 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  ian2003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Initial Event Store Replication
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; command ls -Xgd /etc; true ; } > /tmp/col/20170424
+            echo "disk-$(du -b /tmp/col/20170424 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '20170424'
+  prometheus-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  popHAL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Quantize the slow query log
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; tar cf '/tmp/blue2.tar' -C /etc hosts && tar -rf '/tmp/blue2.tar' -C /etc shells && tar -tf '/tmp/blue2.tar'; true ; } > /tmp/col/zfh0Zj6JoiTmT
+            echo "disk-$(du -b /tmp/col/zfh0Zj6JoiTmT | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'zfh0Zj6JoiTmT'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/velvet657 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  hank_canoe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Opening Issue
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; grep -crHh --include="*.conf" alias /etc/security 2>/dev/null | nl | head -n 8; true ; } > /tmp/col/x9gcvx
+            echo "disk-$(du -b /tmp/col/x9gcvx | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'x9gcvx'
+  v9-edge5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/x9gcvx 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  RuleDevice:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Tonight loop the master file
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type f -name 'limits' -atime +30 -exec md5sum {} + 2>/dev/null | head -n 3; true ; } > /tmp/col/77.253
+            echo "disk-$(du -b /tmp/col/77.253 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '77.253'
+  wip-parse-glitch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/77.253 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  IRQShell7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: The inbound truck is sealing
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf %s 'thanks a lot' | sha224sum | awk '{print $1}'; true ; } > /tmp/col/SSH
+            echo "disk-$(du -b /tmp/col/SSH | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'SSH'
+  polaris-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/SSH 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  is-grey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: scan
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; test -e /etc/hosts && echo yes || echo no; true ; } > /tmp/col/batch_919
+            echo "disk-$(du -b /tmp/col/batch_919 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'batch_919'
+  DEV_CHECK_4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/batch_919 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  has-legend:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Revert replication
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; { echo '3 tests passed'; echo '   leading spaces'; } | sort; true ; } > /tmp/col/CrispFluxGlint
+            echo "disk-$(du -b /tmp/col/CrispFluxGlint | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'CrispFluxGlint'
+  dotnet8-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/CrispFluxGlint 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  bro81:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Operation Fox
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; awk 'NR==1' /proc/self/status | head -n 10; true ; } > /tmp/col/15.08.2022
+            echo "disk-$(du -b /tmp/col/15.08.2022 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '15.08.2022'
+  rigel-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/15.08.2022 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  bishop-pebble:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Drain Circuit Breaker Step
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; cat /proc/sys/kernel/random/entropy_avail | head -n10; true ; } > /tmp/col/Stock
+            echo "disk-$(du -b /tmp/col/Stock | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'Stock'
+  validate-staging-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/Stock 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+  pnl_protocol:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Codename Summer Sweep
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf '%s\n' "we're live" | cat -A; true ; } > /tmp/col/sample_378
+            echo "disk-$(du -b /tmp/col/sample_378 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'sample_378'
+  rl-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Preload upstream cache
+          command: |
+            { mapfile -t -d $'\n' lines < /tmp/col/sample_378 2>/dev/null; echo "lines=${#lines[@]}"; } || true
+      - run:
+          name: Get project
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress and stage
+          command: tar -xjf ledger-wip.tar.bz2
+      - run:
+          command: env ./check-ingestor
+
+  sk-Hans:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Turn the spool directory off and on again
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/test-mango"/white && rm -rf "/tmp/test-mango" && echo removed; true ; } > /tmp/col/audit-5129f.log
+            echo "disk-$(du -b /tmp/col/audit-5129f.log | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'audit-5129f.log'
+  hfq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Sharding vs resume
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf 'host=cache-a\nport=2239\nuser=carol\ndebug=false\n' > "/tmp/forum_plugin_2023-12-15.tsv" && (. "/tmp/forum_plugin_2023-12-15.tsv" && echo "$host:$port"); true ; } > /tmp/col/_wip_1efb83d
+            echo "disk-$(du -b /tmp/col/_wip_1efb83d | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '_wip_1efb83d'
+  miniPtrWrapper:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: ul keys to dev
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; ( set -o pipefail; grep -c root /etc/passwd | tee "/tmp/video-manifest-2025-08-04.conf" ) && cat "/tmp/video-manifest-2025-08-04.conf"; true ; } > /tmp/col/94dd4f
+            echo "disk-$(du -b /tmp/col/94dd4f | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '94dd4f'
+  EA96YrtnaGdm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: checkpoint for the serving endpoint
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; seq 45 >"${TMPDIR:-/tmp}/red-cron.txt" && tail -n 2 "${TMPDIR:-/tmp}/red-cron.txt"; true ; } > /tmp/col/trial0_cb53
+            echo "disk-$(du -b /tmp/col/trial0_cb53 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'trial0_cb53'
+  userDidLoad:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Spinner dismissed done
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; if [ -s /etc/group ]; then echo yes; fi; true ; } > /tmp/col/x9gcvx
+            echo "disk-$(du -b /tmp/col/x9gcvx | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'x9gcvx'
+  typedefRef:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Hana does the checkpoint
+          command: |
+            mkdir -p /tmp/col
+            set +o pipefail 2>/dev/null; { echo "foo"; echo "bar"; echo "baz"; } > /tmp/col/ton3-holl0w-dream-cli3n7; seq 1 580249 >> /tmp/col/ton3-holl0w-dream-cli3n7; true
+            echo "disk-$(du -b /tmp/col/ton3-holl0w-dream-cli3n7 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'ton3-holl0w-dream-cli3n7'
+  mod_rw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Revert copy
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,papaya,17,79.01\n2,peach,8,13.56\n3,cherry,12,5.67\n4,orange,2,98.19\n' | awk -F, 'NR>1' | wc -l; true ; } > /tmp/col/59.115.136
+            echo "disk-$(du -b /tmp/col/59.115.136 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '59.115.136'
+  uJRrIj2M:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Riff on the laptop requests
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; printf '%s\n' "spam and eggs" |grep -o . |sort |uniq -c |sort -rn |head -n 3; true ; } > /tmp/col/VID-00061376
+            echo "disk-$(du -b /tmp/col/VID-00061376 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'VID-00061376'
+  M5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: draft titration
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; dd if=/dev/zero of='/var/tmp/cake.md' bs=1k count=1 2>/dev/null && ls -l '/var/tmp/cake.md'; true ; } > /tmp/col/SSH
+            echo "disk-$(du -b /tmp/col/SSH | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'SSH'
+  p_CART_ARG:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: hover is mandatory
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; g() { echo "[$(date +%T)] $*"; }; g "first, second and third"; true ; } > /tmp/col/CrispFluxGlint
+            echo "disk-$(du -b /tmp/col/CrispFluxGlint | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'CrispFluxGlint'
+  by4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: cutover depth 3
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; touch /tmp/autumn.tmp /tmp/valley.job.log && ls -l /tmp/autumn.tmp /tmp/valley.job.log; true ; } > /tmp/col/Stock
+            echo "disk-$(du -b /tmp/col/Stock | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'Stock'
+  c8-1b-60-ff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Intro clip upscale for the big day
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; if [ -x /usr/bin/awk ]; then echo present; elif [ -e /tmp ]; then echo maybe; else echo absent; fi; true ; } > /tmp/col/PO-80544-SH
+            echo "disk-$(du -b /tmp/col/PO-80544-SH | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'PO-80544-SH'
+  upload-corp-33:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Undo enforcement
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; grep --color=always bash /etc/passwd | cut -d: -f1; true ; } > /tmp/col/crash_20270516
+            echo "disk-$(du -b /tmp/col/crash_20270516 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'crash_20270516'
+  page77mhz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: batch size evaluation phase
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/build-east-node" && touch "/tmp/build-east-node"/{lemon,apple,plum}.json && ls -l "/tmp/build-east-node" | tail -n +2; true ; } > /tmp/col/77.253
+            echo "disk-$(du -b /tmp/col/77.253 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - '77.253'
+  oK8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/col
+      - run:
+          name: Dice the config files
+          command: |
+            mkdir -p /tmp/col
+            { set +o pipefail 2>/dev/null; VERSION="don't panic"; printf '%s\n' "${VERSION#* }"; true ; } > /tmp/col/glyph379
+            echo "disk-$(du -b /tmp/col/glyph379 | awk '{print $1}')"
+      - persist_to_workspace:
+          root: /tmp/col
+          paths:
+            - 'glyph379'
+workflows:
+  release:
+    jobs:
+      - w_len
+      - comment_cli
+      - tweak-router-v2-crash:
+          requires:
+            - w_len
+            - comment_cli
+      - v5-preview:
+          requires:
+            - w_len
+            - comment_cli
+      - STG_RUN_8:
+          requires:
+            - w_len
+            - comment_cli
+      - spin-up:
+          requires:
+            - w_len
+            - comment_cli
+      - bro81
+      - login_10_4_22
+      - sierra_alfa
+      - rigel-final:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - CORE-73:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - CHECK_DEV:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - Verify_Suite2:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - node20-lint:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - check-quick-test-matrix:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - prometheus-plus:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - v1-nightly5:
+          requires:
+            - bro81
+            - login_10_4_22
+            - sierra_alfa
+      - locale_ga_BR
+      - sk-Hans:
+          requires:
+            - locale_ga_BR
+      - Build_App5:
+          requires:
+            - sk-Hans
+      - MittenMitten:
+          requires:
+            - sk-Hans
+      - hfq:
+          requires:
+            - MittenMitten
+      - min-ship:
+          requires:
+            - hfq
+      - IlWA:
+          requires:
+            - hfq
+      - miniPtrWrapper:
+          requires:
+            - IlWA
+      - kilo:
+          requires:
+            - miniPtrWrapper
+      - is-grey
+      - DEV_CHECK_4:
+          requires:
+            - is-grey
+      - SLOT_VERSION:
+          requires:
+            - is-grey
+      - q1-rev:
+          requires:
+            - SLOT_VERSION
+      - pnl_protocol:
+          requires:
+            - SLOT_VERSION
+      - rl-alt:
+          requires:
+            - pnl_protocol
+      - tensorschedule
+      - EA96YrtnaGdm:
+          requires:
+            - tensorschedule
+      - realease:
+          requires:
+            - EA96YrtnaGdm
+      - hank_canoe:
+          requires:
+            - EA96YrtnaGdm
+      - userDidLoad:
+          requires:
+            - hank_canoe
+      - v9-edge5:
+          requires:
+            - userDidLoad
+      - pluginIsNull:
+          requires:
+            - userDidLoad
+      - typedefRef:
+          requires:
+            - pluginIsNull
+      - node18-cov:
+          requires:
+            - typedefRef
+      - UXCW-2832-warning:
+          requires:
+            - typedefRef
+      - mod_rw:
+          requires:
+            - UXCW-2832-warning
+      - Verify_Pipeline6:
+          requires:
+            - mod_rw
+      - test_track_status_prev
+      - uJRrIj2M:
+          requires:
+            - test_track_status_prev
+      - rollout:
+          requires:
+            - uJRrIj2M
+      - IRQShell7:
+          requires:
+            - uJRrIj2M
+      - M5:
+          requires:
+            - IRQShell7
+      - polaris-rc:
+          requires:
+            - M5
+      - has-legend:
+          requires:
+            - M5
+      - p_CART_ARG:
+          requires:
+            - has-legend
+      - dotnet8-test:
+          requires:
+            - p_CART_ARG
+      - bishop-pebble:
+          requires:
+            - p_CART_ARG
+      - by4:
+          requires:
+            - bishop-pebble
+      - validate-staging-integration-tests:
+          requires:
+            - by4
+      - f32fc5a249d5cb:
+          requires:
+            - by4
+      - c8-1b-60-ff:
+          requires:
+            - f32fc5a249d5cb
+      - produce-production-docker-image:
+          requires:
+            - c8-1b-60-ff
+      - BUCKET_NBF:
+          requires:
+            - c8-1b-60-ff
+      - upload-corp-33:
+          requires:
+            - BUCKET_NBF
+      - vera-run:
+          requires:
+            - upload-corp-33
+      - RuleDevice:
+          requires:
+            - upload-corp-33
+      - page77mhz:
+          requires:
+            - RuleDevice
+      - wip-parse-glitch:
+          requires:
+            - page77mhz
+      - struct_Stream-convert:
+          requires:
+            - page77mhz
+      - oK8:
+          requires:
+            - struct_Stream-convert
+      - v5-rc4:
+          requires:
+            - oK8
